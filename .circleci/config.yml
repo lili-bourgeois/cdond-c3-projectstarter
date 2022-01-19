@@ -153,7 +153,7 @@ jobs:
           command: |
             aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
-            --filters "Name=tag:project,Values=udapeople"
+            --filters "Name=tag:project,Values=udapeople" \
             > ./ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
