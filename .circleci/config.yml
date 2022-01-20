@@ -213,14 +213,14 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
             yum install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_lts.x | bash -
             yum -y install nodejs
+      - attach_workspace:
+          at: ~/
       - run:
           name: Get backend url
           command: |
@@ -249,16 +249,19 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "07:9a:ca:fb:70:93:85:75:a6:f0:32:55:e0:df:b7:56"
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
             apk add --update ansible
             apk add --update tar
             apk add --update gzip
+            apk add --update curl
+            apk add --update nodejs npm
+            apk add --update npm
             pip install awscli
             aws --version
+      - attach_workspace:
+          at: ~/
       - run:
           name: Deploy backend
           command: |
