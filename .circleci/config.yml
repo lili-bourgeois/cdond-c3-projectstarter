@@ -188,7 +188,7 @@ jobs:
       - destroy-environment
 
   run-migrations:
-     docker:
+    docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
@@ -209,7 +209,7 @@ jobs:
             fi
 
   deploy-frontend:
-     docker:
+    docker:
       - image: amazon/aws-cli
     steps:
       - checkout
